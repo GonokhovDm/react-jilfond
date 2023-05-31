@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Sidebar.scss';
 
 function Sidebar() {
 
-  async function logJSONData(value) {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const jsonData = await response.json();
+//const [searchValue, setSearchValue] = useState('');
+const [user, setUser] = useState('');    
 
-    for (let i = 0; i < jsonData.length; i++) {
-      if ((jsonData[i].username === value) || (jsonData[i].id === Number(value))) {
-        console.log(jsonData[i])
-      }
+async function logJSONData(value) {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const jsonData = await response.json();
+  for (let i = 0; i < jsonData.length; i++) {
+    if ((jsonData[i].username === value) || (jsonData[i].id === Number(value))) {
+      setUser(jsonData[i]);
     }
-
-    // console.log(jsonData[value]);
   }
-
-  const [searchValue, setSearchValue] = useState('');    
+}
 
   const onChangeSearch = (event) => {
-    
-    setSearchValue(event.target.value);
+    //setSearchValue(event.target.value);
     logJSONData(event.target.value);
   }
 
@@ -33,7 +30,7 @@ function Sidebar() {
       </form>
       <div className="sidebar__results">
         <h2>Результаты</h2>
-        <span>начните поиск</span>
+        {user.name}
       </div>
     </div>
   )
