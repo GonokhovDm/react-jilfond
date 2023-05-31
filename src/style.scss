@@ -1,0 +1,45 @@
+$darkgray: #333;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 70vh;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: $darkgray;
+
+  #root {
+    height: 100%;
+  }
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #E31F24;
+}
+
+h2 {
+  font-size: 16px;
+  width: 600px;
+  color: $darkgray;
+}
+
+main {
+  height: 100%;
+  margin: 50px;
+}
+
+.wrapper {
+  height: 100%;
+  padding: 30px 20px;
+  margin-top: 44px;
+  display: flex;
+  flex-direction: row;
+  background: #FDFDFD;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
