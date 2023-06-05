@@ -18,7 +18,12 @@
     img {
       height: 50%;
       margin: 0 10px;
+    }
 
+    &.active {
+      .search-result__item-info {
+        background-color: #fff;
+      }
     }
 
     &-info {
@@ -32,6 +37,7 @@
       background-color: #E0E0E0;
       border-left: 1px #E0E0E0 solid;
       border-radius: 0 10px 10px 0;
+      transition: background-color .3s ease-in-out;
 
       div {
         padding-right: 10px;
@@ -41,6 +47,7 @@
       p {
         margin-top: 3px;
         overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

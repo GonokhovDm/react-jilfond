@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
 import SearchResult from '../SearchResult';
+import ItemLoader from '../ItemLoader';
 
 import './Sidebar.scss';
 
 function Sidebar({ user, setUser, activeUser, setActiveUser }) {
 
 const [searchValue, setSearchValue] = useState('');
+const [isLoading, setIsLoading] = useState('');
 
 async function logJSONData(value) {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   const jsonData = await response.json();
+  setIsLoading(false);
   let counter;
   let searchArr = [];
   counter = 0;
@@ -26,6 +29,7 @@ async function logJSONData(value) {
 
   if (counter === 0) {
     setUser("Ничего не найдено")
+    setActiveUser('')
   }
 }
 
@@ -34,6 +38,7 @@ async function logJSONData(value) {
   }
 
   const onSubmit = (event) => {
+    setIsLoading(true);
     event.preventDefault();
     let splitSearch = searchValue.split(',');
     logJSONData(splitSearch);
@@ -47,7 +52,8 @@ async function logJSONData(value) {
       </form>
       <div className="sidebar__results">
         <h2>Результаты</h2>
-       { user && <SearchResult user={user} activeUser={activeUser} setActiveUser={setActiveUser}/>}
+        {isLoading && <div className="sidebar__loader"><ItemLoader /> <ItemLoader /> <ItemLoader /></div>}
+        {!isLoading && <SearchResult user={user} activeUser={activeUser} setActiveUser={setActiveUser}/>}
       </div>
     </div>
   )
