@@ -4,12 +4,13 @@ import './SearchResult.scss'
 
 import userSvg from '../../svg/photo.svg';
 
-function SearchResult( { user } ) {
+function SearchResult( { user, setActiveUser } ) {
+
   return (
     <div className="search-result">
       {typeof user !== "string" ? 
         (user.map((item, index) => (
-          <div className="search-result__item" key={index}>
+          <div className="search-result__item" key={index} onClick={() => setActiveUser(item)}>
             <img src={userSvg} alt="user" />
             <div className="search-result__item-info">
               <div>

@@ -4,10 +4,9 @@ import SearchResult from '../SearchResult';
 
 import './Sidebar.scss';
 
-function Sidebar() {
+function Sidebar({ user, setUser, activeUser, setActiveUser }) {
 
 const [searchValue, setSearchValue] = useState('');
-const [user, setUser] = useState('');    
 
 async function logJSONData(value) {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -48,7 +47,7 @@ async function logJSONData(value) {
       </form>
       <div className="sidebar__results">
         <h2>Результаты</h2>
-       { user && <SearchResult user={user}/>}
+       { user && <SearchResult user={user} activeUser={activeUser} setActiveUser={setActiveUser}/>}
       </div>
     </div>
   )
